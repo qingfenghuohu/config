@@ -4,20 +4,20 @@ import (
 	"github.com/BurntSushi/toml"
 	"log"
 	"os"
+	"path/filepath"
 	"sync"
 )
 
 var once sync.Once
-var confPath = "./conf/"
 var Data map[string]interface{}
 
 func init() {
 	once.Do(func() {
-		if !Exists(confPath) {
-			if Exists("../../conf/") {
-				confPath = "../../conf/"
-			}
+		confPath, err := filepath.Abs(filepath.Dir(os.Args[0]))
+		if err != nil {
+			log.Fatal(err)
 		}
+		confPath = confPath + "/conf"
 		if _, err := toml.DecodeFile(confPath+"config.toml", &Data); err != nil {
 			log.Fatal(err)
 		}
