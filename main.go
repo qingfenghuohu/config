@@ -1,10 +1,9 @@
-package config
+package main
 
 import (
 	"github.com/BurntSushi/toml"
 	"log"
 	"os"
-	"path/filepath"
 	"sync"
 )
 
@@ -13,7 +12,7 @@ var Data map[string]interface{}
 
 func init() {
 	once.Do(func() {
-		confPath, err := filepath.Abs(filepath.Dir(os.Args[0]))
+		confPath, err := os.Getwd()
 		if err != nil {
 			log.Fatal(err)
 		}
@@ -24,13 +23,6 @@ func init() {
 	})
 }
 
-func Exists(path string) bool {
-	_, err := os.Stat(path) //os.Stat获取文件信息
-	if err != nil {
-		if os.IsExist(err) {
-			return true
-		}
-		return false
-	}
-	return true
+func main() {
+
 }
