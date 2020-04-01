@@ -16,7 +16,7 @@ func init() {
 		if err != nil {
 			log.Fatal(err)
 		}
-		confPath = confPath + "/conf"
+		confPath = confPath + "/conf/"
 		if _, err := toml.DecodeFile(confPath+"config.toml", &Data); err != nil {
 			log.Fatal(err)
 		}
@@ -24,5 +24,4 @@ func init() {
 }
 
 func main() {
-
 }
