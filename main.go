@@ -1,4 +1,4 @@
-package main
+package config
 
 import (
 	"github.com/BurntSushi/toml"
@@ -21,7 +21,4 @@ func init() {
 			log.Fatal(err)
 		}
 	})
-}
-
-func main() {
 }
